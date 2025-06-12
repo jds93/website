@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+    <title>Signup</title>
+    <style>
+
+
+        @font-face {
+            font-family: 'Poppins-SemiBold';
+            src: url(fonts/Poppins-SemiBold.ttf) format('truetype');
+        }
+
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: #8fbfff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: " ";
+            position: fixed;
+            top: calc(50% - 6px);
+            left: 50%;
+            width: 85vw;
+            height: 72vw;
+            transform: translate(-50%, -50%);
+            background: url('257506e9-79b1-4028-a4b7-ae1489c7d3ea_removalai_preview.png') no-repeat center center;
+            background-size: 100% 100%;
+            opacity: 0.82;
+            filter: blur(8px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .bottom_bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 20px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+            z-index: 10;
+        }
+
+        .bottom_bar_text {
+            font-family: 'TT Norms Pro Bold', sans-serif;
+            font-size: 1.1rem;
+            color: black;
+           margin-left: 8px;
+           letter-spacing: 0.5px;
+        }
+
+        .signup_login_bar {
+            position: absolute;
+            top: 22%;
+            left: 6%;
+            width: 88%;
+            height: 4px;
+            background: #345fa7;
+            border-radius: 4px;
+            z-index: 3;
+        }
+
+        .signup_login_divider_bar {
+            position: absolute;
+            top: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            bottom: 80%;
+            background: #345fa7;
+            border-radius: 4px;
+            z-index: 4;
+        }
+
+        .signup_header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12%;
+            margin-bottom: 6%;
+            z-index: 5;
+            position: relative;
+        }
+
+        .signup_title, .login_title {
+            font-family: 'Poppins-SemiBold', sans-serif;
+            font-size: 1.75rem;
+            color: #345fa7;
+            user-select: none;
+            cursor: pointer;
+            border-radius: 4px; 
+            transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+
+        .signup_title {
+            margin-left: 68px;
+        }
+
+         .login_title {
+            margin-right: 82px;
+        }
+
+        .signup_title.active, .login_title.active {
+            color: #1a2e5a;
+            border-bottom: 4px solid #1a2e5a;
+        }
+
+        .signup_title:not(.active), .login_title:not(.active) {
+            color: #345fa7;
+            border-bottom: 2.5px solid transparent;
+        }
+
+        .password_wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .password_wrapper .signup_input {
+            width: 100%;
+            padding-right: 38px;
+        }
+
+        .toggle_password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-56%);
+            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            opacity: 0.7;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .toggle_password:hover {
+            opacity: 1;
+        }
+
+        .center_signup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25vw;
+            height: 33vw;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: -12px 0 32px -8px rgba(52, 95, 167, 0.18);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .form_content {
+            display:flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 24px;
+            margin: 32px 32px 0 32px;
+            flex: 1 1 auto;
+        }
+
+        .form_content form {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 0;
+        }
+
+        .input_group {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .signup_input {
+            padding: 14px 16px;
+            border: 1.5px solid #cfd8dc;
+            border-radius: 18px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: -2px 4px 8px rgba(52, 95, 167, 0.13);
+            transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .signup_input:focus {
+            border: 1.5px solid #345fa7;
+            box-shadow: 0 4px 16px rgba(52, 95, 167, 0.13);
+        }
+
+        .signup_button {
+            margin-top: 16px;
+            padding: 14px 0;
+            background: #345fa7;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 1.1rem;
+            font-family: 'Poppins-SemiBold', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(52, 95, 167, 0.10);
+            transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            width: 100%;
+        }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear,
+        input[type="password"]::-webkit-credentials-auto-fill-button,
+        input[type="password"]::-webkit-input-decooration,
+        input[type="password"]::-webkit-input-clear-button,
+        input[type="password"]::-webkit-input-password-reveal-button {
+            display: none !important;
+            pointer-events: none;
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .already_account {
+            color: #345fa7;
+            font-size: 0.92rem;
+            margin-top: 6px;
+            margin-bottom: 0;
+            font-family: 'Poppins-SemiBold', sans-serif;
+            text-align: center;
+            width: 100%;
+        }
+
+        .login_link {
+            color: #1a2e5a;
+            text-decoration: none;
+            font-size: 0.92rem;
+            cursor: pointer;
+            font-family: 'Poppins-SemiBold', sans-serif;
+            transition: text-decoration 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .login_link:hover {
+            text-decoration: underline;
+        }
+
+        .signup_bar_or {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 26px 0 0 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .bar_half {
+            flex: 1;
+            height: 4px;
+            background: #345fa7;
+            border-radius: 2px;
+        }
+
+        .or_text {
+            margin: 0 18px;
+            color: #1a2e5a;
+            font-family: 'Poppins-SemiBold', sans-serif;
+            font-size: 1.1rem;
+            background: white;
+            padding: 0 0;
+            position: relative;
+            top: 1px;
+        }
+
+        .signup_button:hover {
+            background: #1a2e5a;
+        }
+
+        .google_signup_button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 0 12px 18px;
+            background: #fff;
+            color: #686967;
+            border: 1.5px solid #cfd8dc;
+            border-radius: 18px;
+            font-size: 1.1rem;
+            font-family: 'Poppins-SemiBold', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(52, 95, 167, 0.07);
+            transition: background 0.2s, ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-top: 28px;
+        }
+
+        .google_signup_button:hover {
+            background: #f5faff;
+            box-shadow: 0 4px 16px rbga(52, 95, 167, 0.13);
+        }
+
+        .google_icon {
+            width: 42px;
+            height: 42px;
+            margin-right: 4px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="center_signup">
+        <div class="signup_header">
+            <span class="signup_title" id="signupTab">Signup</span>
+            <span class="login_title" id="loginTab">Login</span>
+        </div>
+        <div class="signup_login_bar"></div>
+        <div class="signup_login_divider_bar"></div>
+
+        <div id="signupForm" class="form_content">
+            <!-- Signup form fields will go here -->
+             <form autocomplete="off">
+                <div class="input_group">
+                    <input type="email" placeholder="Email Address" class="signup_input" required>
+                    <div class="password_wrapper">
+                        <input type="password" placeholder="Password" class="signup_input" id="signupPassword" required>
+                        <img src="images/hide.png" alt="Show/Hide" class="toggle_password" onclick="togglePassword('signupPassword', this)">
+                    </div>
+                    <div class="password_wrapper">
+                        <input type="password" placeholder="Confirm Password" class="signup_input" id="signupConfirm" required>
+                        <img src="images/hide.png" alt="Show/Hide" class="toggle_password" onclick="togglePassword('signupConfirm', this)">
+                    </div>
+                </div>
+                <button type="submit" class="signup_button">Signup</button>
+                <div class="already_account">
+                    Already have an account?
+                    <a href="#" class="login_link" onclick="setActive('login');return false;">Log in</a>
+                </div>
+                <div class="signup_bar_or">
+                    <div class="bar_half"></div>
+                    <span class="or_text">Or</span>
+                    <div class="bar_half"></div>
+                </div>
+                <button type="button" class="google_signup_button" onclick="googleSignup()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google_icon">
+                    Signup with Google
+                </button>
+            </form>
+        </div>
+        <div id="loginForm" class="form_content" style="display: none;">
+            <!-- Login form fields will go here -->
+            <p>Login form goes here</p>
+        </div>
+    </div>
+    <div class="bottom_bar">
+        <span class="bottom_bar_text">COVINT</span>
+    </div>
+</div>
+
+<script>
+function setActive(tab) {
+    if (tab === 'signup') {
+        document.getElementById('signupTab').classList.add('active');
+        document.getElementById('loginTab').classList.remove('active');
+        document.getElementById('signupForm').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+    } else {
+        document.getElementById('loginTab').classList.add('active');
+        document.getElementById('signupTab').classList.remove('active');
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('signupTab').addEventListener('click', function() {
+    setActive('signup');
+    });
+    document.getElementById('loginTab').addEventListener('click', function() {
+    setActive('login');
+    });
+// CoPilot's notes (understand these) - Set default active tab (e.g, Signup)
+    setActive('signup');
+});
+
+function togglePassword(inputID, icon) {
+    const input = document.getElementById(inputID);
+    const showIcon = "images/view.png";
+    const hideIcon = "images/hide.png";
+    if (input.type === "password") {
+        input.type = "text";
+        icon.src = showIcon;
+    } else {
+        input.type = "password";
+        icon.src = hideIcon;
+    }
+}
+
+function googleSignup () {
+    window.location.href = 
+}
+</script>
+</body>
+</html>
+
+adsadadadsdadsdadsdadsdadsdadsdadsdadsdadsdadsdsdadsdadasadsda
+
