@@ -26,9 +26,8 @@
     * Can have a page to show all the interests that are available, can filter by category, location, or popularity
     * Friends system like snapchat or instagram, can add friends, remove friends, block users
     * Can have a page to show all the groups that are available, can filter by category, location, or popularity
-    * Can have influencer profiles (following, followers, posts), they can manage events
-    * Going to make a logo for the website maybe a unfolded map with creases with a location pin
-    * list of gptimages ^
+    * Can have influencer profiles (following, followers, posts), they can manage events ^
+    * Bug Fixes and continue are needed on signup.html page
         -->
 
         <link rel="stylesheet" href="styles.css">
@@ -37,7 +36,6 @@
     <div class="Menu_Bar">
         <div class="menu_top_row">
             <div class="logo_and_title">
-                <h1>COVINT</h1>
                 <img src="257506e9-79b1-4028-a4b7-ae1489c7d3ea_removalai_preview.png" alt="Covint Logo" class="Logo_Img">
             </div>
             <div class="login_signup">
@@ -52,5 +50,38 @@
             <div class="slogan">Find Your Fun</div>
         </div>
     </div>
+    <div class="background-container">
+        <svg class="Covint-title-svg" viewBox="0 0 900 200" width:="100%" height="200">
+            <defs>
+                <filter id="blur-filter">
+                    <feGaussianBlur stdDeviation="8" />
+                </filter>
+                <mask id="text-mask">
+                    <rect width="100%" height="100%" fill="white"/>
+                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+                        font-family="'TT Norms Pro Bold', sans-serif"
+                        font-size="180"
+                        fill="black"
+                        stroke="white"
+                        stroke-width="4"
+                        paint-order="stroke">
+                        COVINT
+                    </text>
+                </mask>
+            </defs>
+            <image href="soccer.jpg" x="0" y="0" width="900" height="200" filter="url(#blur-filter)" opacity="0.85"/>
+            <image href="soccer.jpg" x="0" y="0" width="900" height="200" mask="url(#text-mask)" />
+            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+                font-family="'TT Norms Pro Bold', sans-serif"
+                font-size="180"
+                fill="none"
+                stroke="white"
+                stroke-width="4"
+                paint-order="stroke">
+                COVINT
+            </text>
+        </svg>
+    </div>
+    <div class="bottom-space"></div>
 </body>
 </html>

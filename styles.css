@@ -6,6 +6,11 @@
     font-family: 'TT Norms Pro Medium';
     src: url(fonts/TTNormsPro-Medium.ttf) format('truetype');
 }
+
+html, body {
+    height: 100%;
+}
+
 h1{
     font-family: 'TT Norms Pro Bold', sans-serif;
     font-weight: bolder;
@@ -28,13 +33,19 @@ div{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    top: -4px;
 }
 body {
     background-color: white;
     margin: 0;
     padding: 0;
+    scrollbar-width: none;
 }
 
+.body::-webkit-scrollbar {
+    display: none;
+}
 
 .Menu_Bar {
     background-color: cornflowerblue;
@@ -43,6 +54,9 @@ body {
     box-sizing: border-box;
     color:black;
     margin: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
 }
 
 .menu_top_row {
@@ -60,6 +74,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-top: -12px;
 }
 
 .login_signup_link {
@@ -84,7 +99,45 @@ body {
 }
 
 .Logo_Img {
-    height: 102px;
+    height: 110px;
     margin-left: 10px;
     vertical-align:  middle;
+    margin-bottom: 0;
+}
+
+.background-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-image-soccer {
+    position: absolute;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    object-fit: cover;
+    filter: blur(8px) brightness(0.7);
+    opacity: 0.85;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.Covint-title-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 200px;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+}
+
+.bottom-space {
+    width: 100vw;
+    height: 100vh;
+    background: #111;
+    z-index: 1;
+    position: static;
 }

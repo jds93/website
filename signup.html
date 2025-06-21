@@ -153,7 +153,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 25vw;
-            height: 33vw;
+            /* height: was 33vw;, taken out so box can stretch */
             background-color: white;
             border-radius: 8px;
             box-shadow: -12px 0 32px -8px rgba(52, 95, 167, 0.18);
@@ -163,6 +163,8 @@
             align-items: stretch;
             justify-content: flex-start;
             overflow: hidden;
+            transition: min-height 0.3s cubic-bezier(.4,0,.2,1);
+            transition: min-height 0.3s cubic-bezier(.4,0,.2,1);
         }
 
         .form_content {
@@ -223,7 +225,7 @@
         input[type="password"]::-ms-reveal,
         input[type="password"]::-ms-clear,
         input[type="password"]::-webkit-credentials-auto-fill-button,
-        input[type="password"]::-webkit-input-decooration,
+        input[type="password"]::-webkit-input-decoration,
         input[type="password"]::-webkit-input-clear-button,
         input[type="password"]::-webkit-input-password-reveal-button {
             display: none !important;
@@ -304,6 +306,7 @@
             box-shadow: 0 2px 8px rgba(52, 95, 167, 0.07);
             transition: background 0.2s, ease-in-out, box-shadow 0.2s ease-in-out;
             margin-top: 28px;
+            margin-bottom: 32px;
         }
 
         .google_signup_button:hover {
@@ -317,13 +320,84 @@
             margin-right: 4px;
         }
 
+        .signup_overlay {
+            position:fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30, 40, 60, 0.70);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+
+        .signup_success_box {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(52, 95, 167, 0.18);
+            min-width: 570px;
+            min-height: 220px;
+            padding: 18px 18px 18px 18px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: min-height 0.3s cubic-bezier(.4,0,.2,1);
+        }
+
+        .signup_overlay.show .signup_success_box {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .signup_confirm_bar {
+            width: 100%;
+            background: #345fa7;
+            padding: 6px 0 5px 18px;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 14px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .signup_confirm_text {
+            color: #fff;
+            font-family: 'Poppins-SemiBold', sans-serif;
+            font-size: 0.98rem;
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+
+        #passwordError {
+            opacity: 0;
+            max-height: 0;
+            transition: opacity 0.3s, max-height 0.3s;
+            overflow: hidden;
+            font-size: 0.98rem;
+        }
+
+        #passwordError.show {
+            opacity: 1;
+            max-height: 40px;
+        }
+
 
     </style>
 </head>
 <body>
     <div class="center_signup">
         <div class="signup_header">
-            <span class="signup_title" id="signupTab">Signup</span>
+            <span class="signup_title active" id="signupTab">Signup</span>
             <span class="login_title" id="loginTab">Login</span>
         </div>
         <div class="signup_login_bar"></div>
@@ -364,10 +438,22 @@
             <p>Login form goes here</p>
         </div>
     </div>
+    <div id="signupOverlay" class="signup_overlay" style="display:none">
+        <div id="signupSuccessBox" class="signup_success_box">
+            <div class="signup_confirm_bar">
+                <span class="signup_confirm_text">Signup Confirmation</span>
+            </div>
+            <form id="successBoxForm" autocomplete="off" style="width:100%; margin-top:32px">
+                <div class="input_group">
+                    <input type="text" placeholder="Username" class="signup_input" required>
+                    <input type="text" placeholder="6-digit-code" class="signup_input" maxlength="6" pattern="\d{6}" required>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="bottom_bar">
         <span class="bottom_bar_text">COVINT</span>
     </div>
-</div>
 
 <script>
 function setActive(tab) {
@@ -408,11 +494,36 @@ function togglePassword(inputID, icon) {
 }
 
 function googleSignup () {
-    window.location.href = 
+    // To be implemented later: what it's supposed to be: window.location.href = then find the href for google sign in
 }
+
+document.querySelector('#signupForm form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const password = document.getElementById('signupPassword').value;
+    const confirm = document.getElementById('signupConfirm').value;
+    let errorMsg = document.getElementById('passwordError');
+    if (errorMsg) errorMsg.remove();
+    if (password !== confirm) {
+        const error = document.createElement('div');
+        error.id = 'passwordError';
+        error.textContent = "Passwords do not match.";
+        error.style.color = "#d32f2f";
+        error.style.marginTop = "8px";
+        error.style.fontFamily = "'Poppins-SemiBold', sans-serif";
+        document.querySelector('#signupForm form .input_group').appendChild(error);
+        setTimeout(() => error.classList.add('show'), 10);
+        return;
+    }
+
+    document.querySelector('.center_signup').style.display = 'none';
+    const overlay = document.getElementById('signupOverlay');
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+        overlay.classList.add('show');
+    }, 10);
+});
 </script>
 </body>
-</html>
-
-adsadadadsdadsdadsdadsdadsdadsdadsdadsdadsdadsdsdadsdadasadsda
+</html> 
 
