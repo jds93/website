@@ -36,15 +36,24 @@ div{
     position: relative;
     top: -4px;
 }
+
+html {
+    overflow-y: scroll;
+}
+
 body {
     background-color: white;
     margin: 0;
     padding: 0;
     scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-y: scroll;
 }
 
 .body::-webkit-scrollbar {
     display: none;
+    width: 0 !important;
+    background: transparent;
 }
 
 .Menu_Bar {
@@ -54,9 +63,9 @@ body {
     box-sizing: border-box;
     color:black;
     margin: 0;
-    position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 10;
+    position: fixed;
 }
 
 .menu_top_row {
@@ -110,11 +119,14 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: white;
 }
 
 .background-image-soccer {
     position: absolute;
-    top: 0; left: 0; width: 100vw; height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; 
+    height: 100vh;
     object-fit: cover;
     filter: blur(8px) brightness(0.7);
     opacity: 0.85;
@@ -124,12 +136,10 @@ body {
 
 .Covint-title-svg {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    height: 200px;
-    z-index: 2;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
     pointer-events: none;
     user-select: none;
 }
