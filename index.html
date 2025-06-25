@@ -51,41 +51,46 @@
             <div class="slogan">Find Your Fun</div>
         </div>
     </div>
-    <div class="background-container">
-      <svg class="Covint-title-svg" viewBox="0 0 1920 1080" width:="100vw" height="100vh" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <filter id="blur-filter">
-            <feGaussianBlur stdDeviation="6" />
-          </filter>
-          <mask id="text-mask">
-            <rect width="100%" height="100%" fill="black"/>
-            <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle"
-                  font-family="'TT Norms Pro Bold', sans-serif"
-                  font-size="245"
-                  fill="white"
-                  stroke="white"
-                  stroke-width="10"
-                  paint-order="stroke">
-              COVINT
-            </text>
-          </mask>
-        </defs>
-        <image href="soccer.jpg" x="0" y="0" width="1920" height="1080"
-               filter="url(#blur-filter)" opacity="0.7"/>
-        <image href="soccer.jpg" x="0" y="0" width="1920" height="1080"
-               mask="url(#text-mask)" />
-        <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle"
-              font-family="'TT Norms Pro Bold', sans-serif"
-              font-size="245"
-              fill="none"
-              stroke="white"
-              stroke-width="10"
-              paint-order="stroke">
-          COVINT
-        </text>
-      </svg>
-    </div>
-    <div class="bottom-space"></div>
+    <div class="scroll-area">
+      <div class="background-container">
+        <svg class="Covint-title-svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="blur-filter">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+            <mask id="text-mask">
+              <rect width="100%" height="100%" fill="black"/>
+              <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle"
+                    font-family="'TT Norms Pro Bold', sans-serif"
+                    font-size="260"
+                    fill="white"
+                    stroke="white"
+                    stroke-width="6"
+                    paint-order="stroke">
+                COVINT
+              </text>
+            </mask>
+          </defs>
+          <image href="soccer.jpg" x="0" y="0" width="100%" height="100%"
+                filter="url(#blur-filter)" opacity="0.7"/>
+          <image href="soccer.jpg" x="0" y="0" width="100%" height="100%"
+                mask="url(#text-mask)" />
+          <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle"
+                font-family="'TT Norms Pro Bold', sans-serif"
+                font-size="260"
+                fill="none"
+                stroke="white"
+                stroke-width="6"
+                paint-order="stroke">
+            COVINT
+          </text>
+        </svg>
+        <div class="covint-slogan">
+          Explore. Connect. Discover.
+        </div>
+      </div>
+      <div class="bottom-space"></div>
+  </div>
 </body>
 </html> 
 
