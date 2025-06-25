@@ -9,6 +9,8 @@
 
 html, body {
     height: 100%;
+    overflow: overlay;
+    overflow-y: scroll;
 }
 
 h1{
@@ -151,3 +153,4 @@ body {
     z-index: 1;
     position: static;
 }
+
