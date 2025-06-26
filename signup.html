@@ -348,6 +348,7 @@
             align-items: center;
             justify-content: center;
             transition: min-height 0.3s cubic-bezier(.4,0,.2,1);
+            overflow: hidden;
         }
 
         .signup_overlay.show .signup_success_box {
@@ -390,6 +391,16 @@
             opacity: 1;
             max-height: 40px;
         }
+
+        #successBoxForm .input_group > * {
+            margin-bottom: 20px;
+        }
+
+        #successBoxForm .input_group > *:last-child {
+            margin-bottom: 0;
+        }
+
+
 
 
     </style>
@@ -446,7 +457,7 @@
             <form id="successBoxForm" autocomplete="off" style="width:100%; margin-top:32px">
                 <div class="input_group">
                     <input type="text" placeholder="Username" class="signup_input" required>
-                    <input type="text" placeholder="6-digit-code" class="signup_input" maxlength="6" pattern="\d{6}" required>
+                    <input type="text" placeholder="Email Verification (6-digit-code)" class="signup_input" maxlength="6" pattern="\d{6}" required>
                 </div>
             </form>
         </div>
@@ -502,9 +513,49 @@ document.querySelector('#signupForm form').addEventListener('submit', function(e
 
     const password = document.getElementById('signupPassword').value;
     const confirm = document.getElementById('signupConfirm').value;
-    let errorMsg = document.getElementById('passwordError');
-    if (errorMsg) errorMsg.remove();
-    if (password !== confirm) {
+
+    let existingErrors = document.querySelectorAll('#passwordError');
+    existingErrors.forEach(error => error.remove());
+
+    let hasError = false;
+
+    if (password.length < 8) {
+        const error = document.createElement('div');
+        error.id = 'passwordError';
+        error.textContent = "Password must be at least 8 characters long.";
+        error.style.color = "#d32f2f";
+        error.style.marginTop = "8px";
+        error.style.fontFamily = "'Poppins-SemiBold', sans-serif";
+        document.querySelector('#signupForm form .input_group').appendChild(error);
+        setTimeout(() => error.classList.add('show'), 10);
+        hasError = true;
+    }
+
+    else if (!/[A-Z]/.test(password)) {
+        const error = document.createElement('div');
+        error.id = 'passwordError';
+        error.textContent = "Password must include 1 or more capital letters.";
+        error.style.color = "#d32f2f";
+        error.style.marginTop = "8px";
+        error.style.fontFamily = "'Poppins-SemiBold', sans-serif";
+        document.querySelector('#signupForm form .input_group').appendChild(error);
+        setTimeout(() => error.classList.add('show'), 10);
+        hasError = true;
+    }
+
+    else if (!/\d/.test(password)) {
+        const error = document.createElement('div');
+        error.id = 'passwordError';
+        error.textContent = "Password must include 1 or more numbers.";
+        error.style.color = "#d32f2f";
+        error.style.marginTop = "8px";
+        error.style.fontFamily = "'Poppins-SemiBold', sans-serif";
+        document.querySelector('#signupForm form .input_group').appendChild(error);
+        setTimeout(() => error.classList.add('show'), 10);
+        hasError = true;
+    }
+
+    else if (password !== confirm) {
         const error = document.createElement('div');
         error.id = 'passwordError';
         error.textContent = "Passwords do not match.";
@@ -513,15 +564,17 @@ document.querySelector('#signupForm form').addEventListener('submit', function(e
         error.style.fontFamily = "'Poppins-SemiBold', sans-serif";
         document.querySelector('#signupForm form .input_group').appendChild(error);
         setTimeout(() => error.classList.add('show'), 10);
-        return;
+        hasError = true;
     }
 
-    document.querySelector('.center_signup').style.display = 'none';
-    const overlay = document.getElementById('signupOverlay');
-    overlay.style.display = 'flex';
-    setTimeout(() => {
-        overlay.classList.add('show');
-    }, 10);
+    if (!hasError) {
+        document.querySelector('.center_signup').style.display = 'none';
+        const overlay = document.getElementById('signupOverlay');
+        overlay.style.display = 'flex';
+        setTimeout(() => {
+            overlay.classList.add('show');
+        }, 10);
+    }
 });
 </script>
 </body>
