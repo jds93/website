@@ -31,13 +31,13 @@
 
         .page-container {
             width: 100%;
-            min-height: 100vh;
+            min-height: 100%;
         }
 
         .basketball-image-section {
             position: relative;
             width: 100%;
-            height: 48%;
+            height: 44%;
             aspect-ratio: 16/7;
             overflow: hidden;
             background: #222;
@@ -50,6 +50,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 24%;
             filter: blur(8px);
             opacity: 0.75;
             z-index: 0;
@@ -57,39 +58,56 @@
 
         .catchphrase {
             position: absolute;
-            top: 25%;
+            top: 8.5%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, 0%);
             font-family: 'TT Norms Pro Bold', sans-serif;
-            font-size: 4.5vw;
+            font-size: 4.1rem;
             color: #000;
             text-align: center;
             z-index: 2;
-            text-shadow: 0 2px 8px rgba(255,255,255,0.8), 0 1px 4px rgba(255,255,255,0.6);
-            line-height: 1.2;
-            max-width: 90%;
+            text-shadow: 0 2px 6px rgba(255,255,255,0.25);
+            line-height: 1.1;
+            max-width: 98%;
+            white-space: nowrap;
         }
 
         .bottom-space {
             width: 100%;
-            background: #101c35;
-            padding: 5% 0 6% 0;
-            z-index: 1;
-            margin-top: -3%;
+            background: #98b9ff;
+            transform: translateY(-40px);
+            padding-bottom: 64px;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .bottom-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 3%;
-            color: white;
+            color: #101c35;
+            width: 100%;
+        }
+
+        .bottom-covint {
+            font-family: 'TT Norms Pro Bold', sans-serif;
+            font-size: clamp(8rem, 28vw, 18.25rem);
+            line-height: 1;
+            text-align: center;
+            color: #101c35;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.01em;
+            width: 100%;
+            overflow-wrap: anywhere;
+            padding: 0 1vw;
         }
 
         .bottom-title {
             font-family: 'TT Norms Pro Bold', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 3%;
             text-align: center;
+            color: #101c35;
         }
 
         .bottom-text {
@@ -102,22 +120,52 @@
 
         @media (max-width: 900px) {
             .catchphrase {
-                font-size: 6vw;
-                top: 26%;
+                font-size: 2.5rem;
+                top: 10%;
             }
 
             .basketball-image-section {
-                min-height: 38%;
+                height: 36%;
+            }
+
+            .bottom-space {
+                min-height: 80vh;
+                margin-top: -88px;
+                padding-top: 88px;
+                padding-bottom: 40px;
+            }
+
+            .bottom-covint {
+                font-size: 2.5rem;
+            }
+
+            .bottom-title {
+                font-size: 1.7rem;
             }
         }
         @media (max-width: 600px) {
             .catchphrase {
-                font-size: 8vw;
-                top: 30%;
+                font-size: 1.5rem;
+                top: 12%;
             }
 
             .basketball-image-section {
-                min-height: 30%;
+                height: 28%;
+            }
+
+            .bottom-space {
+                min-height: 60vh;
+                margin-top: -56px;
+                padding-top: 56px;
+                padding-bottom: 24px;
+            }
+
+            .bottom-covint {
+                font-size: 1.5rem;
+            }
+
+            .bottom-title {
+                font-size: 1.1rem;
             }
         }
 
@@ -130,13 +178,12 @@
                 alt="People playing basketball"
                 class="basketball-background">
             <div class="catchphrase">
-                Real Connections.<br>
-                Real Places.<br>
-                Real You.
+                Real Connections. Real Places. Real You.
             </div>
         </div>
         <div class="bottom-space">
             <div class="bottom-content">
+                <div class="bottom-covint">COVINT</div>
                 <div class="bottom-title">Find Your Fun</div>
                 <div class="bottom-text">
                     Discover Local Activities, connect with people who share your interests, and create meaningful experiences in your community. Whether you're looking for pickup games, group activities, or new adventures, COVINT helps you find the perfect way to spend your time and make lasting connections.
