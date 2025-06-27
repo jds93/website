@@ -39,7 +39,8 @@
             <div class="logo_and_title">
                 <img src="257506e9-79b1-4028-a4b7-ae1489c7d3ea_removalai_preview.png" alt="Covint Logo" class="Logo_Img">
             </div>
-            <a class="menu_link discover_interests" href=""discover-interests.html">Discover Interests</a>
+            <a class="menu_link terms_of_service" href="terms-of-service.html">Terms of Service</a>
+            <a class="menu_link discover_interests" href="discover-interests.html">Discover Interests</a>
             <a class="menu_link find_your_fun" href="find-your-fun.html">Find Your Fun</a>
             <div class="login_signup">
                 <a href="signup.html" class="login_signup_link"> Login / Signup</a>
@@ -56,6 +57,10 @@
             <filter id="blur-filter">
               <feGaussianBlur stdDeviation="7" />
             </filter>
+            <filter id="text-shadow">
+              <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.0.55)"/>
+              <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.35)"/>
+            </filter>
             <mask id="text-mask">
               <rect width="100%" height="100%" fill="black"/>
               <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle"
@@ -64,7 +69,8 @@
                     fill="white"
                     stroke="white"
                     stroke-width="6"
-                    paint-order="stroke">
+                    paint-order="stroke"
+                    filter="url(#text-shadow)">
                 COVINT
               </text>
             </mask>
@@ -79,7 +85,8 @@
                 fill="none"
                 stroke="white"
                 stroke-width="6"
-                paint-order="stroke">
+                paint-order="stroke"
+                filter="url(#text-shadow)">
             COVINT
           </text>
         </svg>
@@ -87,10 +94,33 @@
           Explore. Connect. Discover.
         </div>
       </div>
-      <div class="bottom-space"></div>
+      <div class="bottom-space">
+        <div class="intro-paragraph-container">
+          <div class="intro-title">Welcome to COVINT!</div>
+          <div class="intro-paragraphs-row">
+            <div class="intro-paragraph">Our app is a new way to find and experience local fun. Using this app, all sorts of new possibilities open up for fun and excitement near you. COVINT is your gateway to immersive local experiences!</div>
+            <div class="intro-paragraph">COVINT allows a person to create a profile based on their interests, which in turn allows us to help you find your fun! COVINT offers an exciting way to connect and explore. We encourage our users to explore what their city has to offer and to turn downtime into something memorable!</div>
+            <div class="intro-paragraph">Our profile system is that first step that will allow you to both enjoy things you already like, or find new hobbies for yourself. You get to experience personalized moments that matter, with the people that matter most to you.</div>
+            <div class="intro-paragraph">Discover events or groups, meet new friends or connect with old ones, and explore your interests, all in one place! Our app will give you the ability to connect over meaningful activities, bringing family and friends closer together! The easiest way to find your people is just a few steps away! Just head over to Discover Interests to get started, or go to Find Your Fun to learn more.</div>
+          </div>
+        </div>
+        <div class="bottom-links-row">
+          <div class="bottom-links-left">
+            <a href="terms-of-service.html" class="bottom-links">Terms of Service</a>
+            <a href="discover-interests.html" class="bottom-links">Discover Interests</a>
+          </div>
+          <div class="bottom-links-right">
+            <a href="signup.html" class="bottom-links">Signup/Login</a>
+            <a href="find-your-fun.html" class="bottom-links">Find Your Fun</a>
+          </div>
+        </div>
+      </div>
   </div>
 </body>
 </html> 
+
+
+
 
 
 
