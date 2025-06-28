@@ -21,11 +21,13 @@
             padding: 0;
             font-family: 'TT Norms Pro Medium', sans-serif;
             overflow-x: hidden;
+            overflow-y: scroll;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            background: #98b9ff;
         }
 
-        body::-webkit-scrollbar {
+        body::-webkit-scrollbar, html::-webkit-scrollbar {
             display: none;
         }
 
@@ -77,7 +79,7 @@
             background: #98b9ff;
             transform: translateY(-40px);
             padding-bottom: 64px;
-            min-height: 100vh;
+            min-height: 180vh;
             box-sizing: border-box;
         }
 
@@ -91,15 +93,18 @@
 
         .bottom-covint {
             font-family: 'TT Norms Pro Bold', sans-serif;
-            font-size: clamp(8rem, 28vw, 18.25rem);
+            font-size: 28rem !important; 
             line-height: 1;
             text-align: center;
             color: #101c35;
             margin-bottom: 2.5rem;
             letter-spacing: 0.01em;
             width: 100%;
-            overflow-wrap: anywhere;
-            padding: 0 1vw;
+            max-width: 100%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+            white-space: nowrap;
         }
 
         .bottom-title {
@@ -182,8 +187,8 @@
             </div>
         </div>
         <div class="bottom-space">
+            <div class="bottom-covint" id="shrinking-covint">COVINT</div>
             <div class="bottom-content">
-                <div class="bottom-covint">COVINT</div>
                 <div class="bottom-title">Find Your Fun</div>
                 <div class="bottom-text">
                     Discover Local Activities, connect with people who share your interests, and create meaningful experiences in your community. Whether you're looking for pickup games, group activities, or new adventures, COVINT helps you find the perfect way to spend your time and make lasting connections.
@@ -191,6 +196,32 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const covint = document.getElementById('shrinking-covint');
+        const maxFontSize = 28;
+        const minFontSize = 10;
+        const shrinkStart = covint.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2;
+        const shrinkEnd = shrinkStart + 300;
 
+        function onScroll() {
+            const scrollY = window.scrollY;
+            if (scrollY < shrinkStart) {
+                covint.style.fontSize = maxFontSize + 'rem';
+            } else if (scrollY > shrinkEnd) {
+                covint.style.fontSize = minFontSize + 'rem';
+            } else {
+                const progress = (scrollY - shrinkStart) / (shrinkEnd - shrinkStart);
+                const size = maxFontSize - (maxFontSize - minFontSize) * progress;
+                covint.style.fontSize = size + 'rem';
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+    });
+    </script>
+</body> 
+</html> 
+
+ 
