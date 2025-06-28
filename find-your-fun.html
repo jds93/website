@@ -79,7 +79,7 @@
             background: #98b9ff;
             transform: translateY(-40px);
             padding-bottom: 64px;
-            min-height: 180vh;
+            min-height: 100vh;
             box-sizing: border-box;
         }
 
@@ -93,7 +93,7 @@
 
         .bottom-covint {
             font-family: 'TT Norms Pro Bold', sans-serif;
-            font-size: 28rem !important; 
+            font-size: 28rem; 
             line-height: 1;
             text-align: center;
             color: #101c35;
@@ -201,20 +201,13 @@
         const covint = document.getElementById('shrinking-covint');
         const maxFontSize = 28;
         const minFontSize = 10;
-        const shrinkStart = covint.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2;
-        const shrinkEnd = shrinkStart + 300;
+        const shrinkScroll = 350;
 
         function onScroll() {
             const scrollY = window.scrollY;
-            if (scrollY < shrinkStart) {
-                covint.style.fontSize = maxFontSize + 'rem';
-            } else if (scrollY > shrinkEnd) {
-                covint.style.fontSize = minFontSize + 'rem';
-            } else {
-                const progress = (scrollY - shrinkStart) / (shrinkEnd - shrinkStart);
-                const size = maxFontSize - (maxFontSize - minFontSize) * progress;
-                covint.style.fontSize = size + 'rem';
-            }
+            const progress = Math.min(Math.max(scrollY / shrinkScroll, 0), 1);
+            const newSize = maxFontSize - (maxFontSize - minFontSize) * progress;
+            covint.style.fontSize = newSize + 'rem';
         }
 
         window.addEventListener('scroll', onScroll);
