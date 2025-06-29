@@ -16,12 +16,10 @@
         }
 
         html, body {
-            height: 100%;
             margin: 0;
             padding: 0;
             font-family: 'TT Norms Pro Medium', sans-serif;
             overflow-x: hidden;
-            overflow-y: scroll;
             scrollbar-width: none;
             -ms-overflow-style: none;
             background: #98b9ff;
@@ -102,9 +100,10 @@
             width: 100%;
             max-width: 100%;
             margin-left: 50%;
-            transform: translateX(-50%);
             padding: 0;
             white-space: nowrap;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
         }
 
         .bottom-title {
@@ -140,10 +139,6 @@
                 padding-bottom: 40px;
             }
 
-            .bottom-covint {
-                font-size: 2.5rem;
-            }
-
             .bottom-title {
                 font-size: 1.7rem;
             }
@@ -163,10 +158,6 @@
                 margin-top: -56px;
                 padding-top: 56px;
                 padding-bottom: 24px;
-            }
-
-            .bottom-covint {
-                font-size: 1.5rem;
             }
 
             .bottom-title {
@@ -199,22 +190,33 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const covint = document.getElementById('shrinking-covint');
-        const maxFontSize = 28;
-        const minFontSize = 10;
-        const shrinkScroll = 350;
+        const maxScale = 1;
+        const minScale = 0.35;
+        const shrinkScroll = 750;
+        const maxTranslateY = -100;
+        let ticking = false;
 
-        function onScroll() {
+        function updateScale() {
             const scrollY = window.scrollY;
             const progress = Math.min(Math.max(scrollY / shrinkScroll, 0), 1);
-            const newSize = maxFontSize - (maxFontSize - minFontSize) * progress;
-            covint.style.fontSize = newSize + 'rem';
+            const scale = maxScale - (maxScale - minScale) * progress;
+            const translateY = maxTranslateY * progress;
+
+            covint.style.transform = `translateX(-50%) translateY(${translateY}px) scale(${scale})`;
+            ticking = false;
         }
 
-        window.addEventListener('scroll', onScroll);
-        onScroll();
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(updateScale);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateScale();
     });
     </script>
 </body> 
 </html> 
 
- 
