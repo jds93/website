@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Terms of Service</title>
-    <style>body { background: #fff; margin: 0; }</style>
+    <style>
+        @font-face {
+            font-family:'TT Norms Pro Bold';
+            src: url(font/TTNormsPro-Bold.ttf);
+        }
+
+        body {
+            background: #98b9ff;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+
+        }
+
+        .bottom_bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 20px;
+            background-color: cornflowerblue;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+            z-index: 10;
+        }
+
+        .bottom_bar_text {
+            font-family: 'TT Norms Pro Bold', sans-serif;
+            font-size: 1.1rem;
+            color: white;
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .bottom_bar_text:hover {
+            color: #101c35;
+        }
+    </style>
 </head>
 <body>
     TOS - take inspiration from some other websites TOS. maybe a captcha?
+
+    <div class="bottom_bar">
+        <a href="index.html" class="bottom_bar_text">COVINT</a>
 </body>
 </html>
