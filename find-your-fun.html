@@ -147,6 +147,21 @@
             .bottom-title {
                 font-size: 1.7rem;
             }
+
+            .fork-svg {
+                width: 280px;
+                height: 100px;
+            }
+
+            .fork-text-row {
+                width: 280px;
+                gap: 12px;
+            }
+
+            .fork-text-box {
+                font-size: 0.9rem;
+                padding: 16px 12px;
+            }
         }
         @media (max-width: 600px) {
             .catchphrase {
@@ -168,9 +183,88 @@
             .bottom-title {
                 font-size: 1.1rem;
             }
+
+            .fork-svg {
+                width: 240px;
+                height: 80px;
+            }
+
+            .fork-text-row {
+                width: 240px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .fork-text-box {
+                font-size: 0.85rem;
+                padding: 14px 10px;
+            }
         }
 
         /* Put next css here */
+
+        .fork-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 48px;
+            transition: transform 0.1s cubic-bezier(.4,0,.2,1);
+            will-change: transform;
+        }
+
+        .fork-svg-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 40000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fork-svg {
+            width: 100%;
+            height: 160px;
+            display: block;
+        }
+
+        .fork-line {
+            stroke: #101c35;
+            stroke-width: 14;
+            stroke-linecap: square;
+        }
+
+        .fork-text-row {
+            position: absolute;
+            top: 170px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+        .fork-text-box {
+            margin-top: 36px;
+        }
+        .fork-text-box.left { margin-left: 32px; }
+        .fork-text-box.right { margin-right: 32px; }
+        .fork-text-box.center { align-self: flex-start; }
+
+        @media (max-width: 1200px) {
+            .fork-svg-wrapper { max-width: 98vw; }
+            .fork-text-box { width: 28vw; min-width: 120px; font-size: 0.98rem; }
+        }
+        @media (max-width: 700px) {
+            .fork-svg-wrapper { max-width: 98vw; }
+            .fork-text-box { width: 30vw; min-width: 120px; font-size: 0.9rem; }
+        }
+        @media (max-width: 500px) {
+            .fork-svg-wrapper { max-width: 100vw; }
+            .fork-text-row { flex-direction: column; align-items: center; top: 170px; }
+            .fork-text-box { width: 90vw; margin-bottom: 12px; }
+        }
 
         .bottom_bar {
             position: fixed;
@@ -216,6 +310,34 @@
             <div class="bottom-covint" id="shrinking-covint">COVINT</div>
             <div class="bottom-content">
                 <div class="bottom-title" id="findyourfuntitle">Find Your Fun</div>
+                <div class="fork-container" id="forkContainer">
+                    <div class="fork-svg-wrapper">
+                        <svg class="fork-svg" viewBox="0 0 1800 160">
+                            <!-- main vertical line -->
+                            <line x1="900" y1="0" x2="900" y2="70" class="fork-line" />
+                            <!-- left prong  -->
+                            <line x1="900" y1="70" x2="200" y2="140" class="fork-line" />
+                            <!-- center prong -->
+                            <line x1="900" y1="70" x2="900" y2="140" class="fork-line" />
+                            <!-- right prong -->
+                            <line x1="900" y1="70" x2="1700" y2="140" class="fork-line" />
+                        </svg>
+                        <div class="fork-text-row">
+                            <div class="fork-text-box left"> 
+                                <strong>Local Activities</strong><br>
+                                Discover pickup games, group events, and community activities happening right in your neighborhood. Connect with people who share your interests and find new ways to have fun close to home.
+                            </div>
+                            <div class="fork-text-box center">
+                                <strong>Real Connections</strong><br>
+                                Build meaningful relationships through shared experiences. Meet new friends, reconnect with old ones, and create lasting memories with people who understand your passions and interests.
+                            </div>
+                            <div class="fork-text-box right">
+                                <strong>Personal Growth</strong><br>
+                                Explore new hobbies, develop skills, and step out of your comfort zone. COVINT helps you discover activities that challenge you and help you become the best version of yourself.
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="bottom-text">
                     Discover local activities, connect with people who share your interests, and create meaningful experiences in your community. Whether you're looking for pickup games, group activities, or new adventures, COVINT helps you find the perfect way to spend your time and make lasting connections.
                 </div>
@@ -240,10 +362,13 @@
             covint.style.transform = `translateX(-50%) translateY(${translateY}px) scale(${scale})`;
 
             const findyourfun = document.getElementById('findyourfuntitle');
+            const forkContainer = document.getElementById('forkContainer');
             const baseOffset = -35;
             const minOffset = -365;
             const offset = baseOffset - (baseOffset - minOffset) * progress;
-            findyourfun.style.transform = `translateY(${translateY + scale * offset}px)`;
+            const forkTransform = `translateY(${translateY + scale * offset}px)`;
+            findyourfun.style.transform = forkTransform;
+            forkContainer.style.transform = forkTransform;
             ticking = false;
         }
 
@@ -260,7 +385,7 @@
     </script>
     <div class="bottom_bar">
         <a href="index.html" class="bottom_bar_text">COVINT</a>
-    </div>
+    </div> 
 </body> 
 </html> 
 
