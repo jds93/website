@@ -2,18 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover Interests</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         @font-face {
             font-family: 'TT Norms Pro Bold';
-            src: url(font/TTNormsPro-Bold.ttf) format('truetype');
+            src: url('fonts/TTNormsPro-Bold.ttf') format('truetype');
         }
-
+        @font-face {
+            font-family: 'TT Norms Pro Medium';
+            src: url('fonts/TTNormsPro-Medium.ttf') format('truetype');
+        }
         body {
-            background: #98b9ff;
             margin: 0;
-            min-height: 100vh;
+            padding: 0;
+            font-family: 'TT Norms Pro Medium', sans-serif;
+            background: #f7faff;
+        }
+        .discover-menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 64px;
+            background: #345fa7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(16,28,53,0.08);
+        }
+        .discover-menu-content {
+            width: 100vw;
+            max-width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
+        }
+        .profile-builder-title {
+            font-family: 'TT Norms Pro Bold', sans-serif;
+            color: #fff;
+            font-size: 2.1rem;
+            letter-spacing: 0.04em;
+            text-align: center;
+            flex: 1 1 auto;
+            user-select: none;
+        }
+        .login-signup-link {
+            position: absolute;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'TT Norms Pro Medium', sans-serif;
+            color: #fff;
+            font-size: 1.18rem;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: text-decoration 0.2s, color 0.2s;
+        }
+        .login-signup-link:hover {
+            text-decoration: underline;
+            color: #e6eaff;
+        }
+        .discover-content {
+            margin-top: 80px;
+            padding: 32px 0 0 0;
         }
 
         .bottom_bar {
@@ -21,7 +78,6 @@
             left: 0;
             bottom: 0;
             width: 100%;
-
             height: 20px;
             background-color: cornflowerblue;
             display: flex;
@@ -31,7 +87,7 @@
         }
 
         .bottom_bar_text {
-            font-family: 'TT Norms Pro Bold', sans-serif;
+            font-family: 'TT Norms Pro Bold';
             font-size: 1.1rem;
             color: white;
             margin-left: 8px;
@@ -43,13 +99,64 @@
         .bottom_bar_text:hover {
             color: #101c35;
         }
+
+        .create-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 36px;
+            margin-left: 44px;
+            padding: 14px 28px 14px 22px;
+            background: #345fa7;
+            color: #fff;
+            font-family: 'TT Norms Pro Bold', sans-serif;
+            font-size: 1.25rem;
+            border: none;
+            border-radius: 32px;
+            box-shadow: 0 2px 12px rgba(16,28,53,0.10);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.18s, box-shadow 0.18s;
+            position: relative;
+            z-index: 2;
+        }
+        .create-profile-btn:hover {
+            background: #223366;
+            box-shadow: 0 4px 18px rgba(16,28,53,0.13);
+            color: #e6eaff;
+            text-decoration: none;
+        }
+        .plus-sign {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 8px;
+            display: inline-block;
+            line-height: 1;
+        }
     </style>
 </head>
 <body>
-    Direct to Signup/Login page
-    Build a profile + introduce some systems and flesh out app more.
-
-    <div class="bottom_bar">
-        <a href="index.html" class="bottom_bar_text">COVINT</a>
+    <div class="discover-menu-bar">
+        <div class="discover-menu-content">
+            <div class="profile-builder-title">Profile Builder</div>
+            <a href="signup.html" class="login-signup-link">Login / Signup</a>
+        </div>
+    </div>
+    <div class="discover-content">
+        <!-- Create New Profile button -->
+        <a href="signup.html" class="create-profile-btn">
+            <span class="plus-sign">+</span> Create New Profile
+        </a>
+        <!-- Main content for Discover Interests will go here. -->
+        <!--
+        Discover Interests is your starting point for exploring new activities, hobbies, and communities.
+        Use this page to browse, filter, and find experiences that match your passions or help you try something new.
+        Direct to Signup/Login page. Build a profile + introduce some systems and flesh out app more.
+        (Add more features and content here as you build out the app.)
+        -->
+        <div class="bottom_bar">
+            <a href="index.html" class="bottom_bar_text">COVINT</a>
+        </div>
+    </div>
 </body>
 </html>
