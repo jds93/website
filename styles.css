@@ -287,3 +287,49 @@ body::-webkit-scrollbar {
     text-decoration: underline;
 }
 
+/* REVIEWS SECTION STYLES */
+.reviews-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 38px 0 0 0;
+    z-index: 2;
+}
+.reviews-title {
+    color: #fff;
+    font-family: 'TT Norms Pro Bold', sans-serif;
+    font-size: 3rem; /* matches .intro-title */
+    text-align: center;
+    margin-bottom: 18px;
+}
+.reviews-row {
+    display: flex;
+    justify-content: center;
+    gap: 38px;
+    margin-bottom: 22px;
+}
+.review-blurb {
+    background: rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 22px 28px 16px 28px;
+    color: #e6eaff;
+    font-family: 'TT Norms Pro Medium', sans-serif;
+    font-size: 1.18rem; /* between .intro-paragraph (1.33rem) and .bottom-links (1.45rem) */
+    max-width: 340px;
+    min-width: 220px;
+    box-shadow: 0 2px 12px rgba(16,28,53,0.10);
+    margin: 0 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.review-author {
+    margin-top: 12px;
+    font-size: 1.01rem;
+    color: #b3c6e6;
+    font-style: italic;
+    text-align: right;
+}
+
