@@ -264,9 +264,10 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: space-between;
     gap: 32px;
-    margin-top: 64px;
+    margin-top: -28x;
     margin-bottom: 0;
     box-sizing: border-box;
+    padding: 0 2vw;
 }
 
 .reviews-and-links-row .bottom-links-left,
@@ -372,4 +373,13 @@ body::-webkit-scrollbar {
 
 /* Remove old .bottom-links-row margin if present */
 .bottom-links-row { margin-top: 0 !important; }
+
+.bottom_bar {
+  transform: scale(1.1);
+  transform-origin: bottom;
+  height: 22px !important;
+}
+.bottom_bar_text {
+  font-size: 1.21rem !important;
+}
 
